@@ -1,0 +1,9 @@
+Token: x, línea: 1, índice: 0
+Token: :=, línea: 1, índice: 2
+Token: 45, línea: 1, índice: 5
+Token: ;, línea: 1, índice: 7
+Token: y, línea: 2, índice: 0
+Token: :=, línea: 2, índice: 2
+Token: verdadero, línea: 2, índice: 5
+Token: ;, línea: 2, índice: 14
+Token: <EOF>, línea: 2, índice: 15

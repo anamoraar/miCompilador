@@ -8,12 +8,12 @@
 ## Probar la fase léxica
 Para ejecutar el siguiente comando se debe estar en el root del proyecto, es decir, en miCompilador:
 ```bash
-java -cp "lib/antlr-4.13.1-complete.jar;out/production/miCompilador" PruebaLexer IO/prueba1.txt IO/salida1.txt
+java -cp "lib/antlr-4.13.1-complete.jar;out/production/miCompilador" PruebaLexer IO/prueba1.txt IO/salidaL1.txt
 ```
 ## Probar la fase sintática
 Para ejecutar el siguiente comando se debe estar en el root del proyecto, es decir, en miCompilador:
 ```bash
-java -cp "lib/antlr-4.13.1-complete.jar;out/production/miCompilador" PruebaParser IO/prueba1.txt IO/salidaP.txt
+java -cp "lib/antlr-4.13.1-complete.jar;out/production/miCompilador" PruebaParser IO/prueba1.txt IO/salidaP1.txt
 ```
 
 ## Requisitos

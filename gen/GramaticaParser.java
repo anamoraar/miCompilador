@@ -38,8 +38,8 @@ public class GramaticaParser extends Parser {
 		return new String[] {
 			null, "';'", "':='", "'('", "')'", "'{'", "'}'", "'*'", "'/'", "'+'", 
 			"'-'", "'!'", "'&&'", "'||'", "'=='", "'!='", "'>'", "'>='", "'<'", "'<='", 
-			"','", null, null, "'si'", "'contrario'", "'funcion'", "'retornar'", 
-			"'verdadero'", "'falso'"
+			"','", null, null, "'SI'", "'CONTRARIO'", "'FUNCION'", "'RETORNAR'", 
+			"'VERDADERO'", "'FALSO'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();

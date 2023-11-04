@@ -1,2 +1,0 @@
-Error en linea 1, columna 0 - mismatched input '67' expecting {IDENTIFICADOR, 'si', 'funcion'}
-(programa (sentencia 67 := 76) ;)

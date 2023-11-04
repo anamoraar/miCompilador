@@ -47,9 +47,9 @@ ESPACIOS=29
 '<'=18
 '<='=19
 ','=20
-'si'=23
-'contrario'=24
-'funcion'=25
-'retornar'=26
-'verdadero'=27
-'falso'=28
+'SI'=23
+'CONTRARIO'=24
+'FUNCION'=25
+'RETORNAR'=26
+'VERDADERO'=27
+'FALSO'=28

@@ -17,16 +17,22 @@ public class PruebaLexer {
         //Pasarlo a string
         FileInputStream inputStream = new FileInputStream(inputFileName);
         String inputText = new String(inputStream.readAllBytes());
-        //Generar el lexer y los tokens dada la entrada
+        //Generar el lexer y pasarle la entrada
         GramaticaLexer lexer = new GramaticaLexer(CharStreams.fromString(inputText));
+        // Crear un FileWriter para escribir la salida
+        FileWriter outputWriter = new FileWriter(outputFileName);
+        // Crear una instancia de MyErrorListener y adjuntarla al lexer
+        MyErrorListener errorListener = new MyErrorListener(outputWriter);
+        lexer.removeErrorListeners(); // Eliminar los listeners por defecto
+        lexer.addErrorListener(errorListener);
+        //Generar los tokens
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         tokens.fill();
-        //Archivo de salida
-        //Escribir en el archivo de salia
-        FileWriter outputWriter = new FileWriter(outputFileName);
+        // Escribir en el archivo de salida los tokens identificados
         for (Token token : tokens.getTokens()) {
-            outputWriter.write("Token: " + token.getText() + ", línea: " + token.getLine() + ", índice: " + token.getCharPositionInLine() + "\n");
+            outputWriter.write("Token: " + token.getText() + ", linea: " + token.getLine() + ", columna: " + token.getCharPositionInLine() + "\n");
         }
+        // Cerrar el archivo de salida
         outputWriter.close();
     }
 }

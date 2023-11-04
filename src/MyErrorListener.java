@@ -7,12 +7,15 @@ import java.io.IOException;
 
 public class MyErrorListener extends BaseErrorListener {
 
+    //Archivo de salida donde se escriben los errores
     private final FileWriter outputWriter;
 
+    //En el constructor se le pasa el archivo de salida creado en el main
     public MyErrorListener(FileWriter outputWriter) {
         this.outputWriter = outputWriter;
     }
 
+    //Método que imprime y escribe los errores encontrados
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
         String errorText = "Error en linea " + line + ", columna " + charPositionInLine + " - " + msg + "\n";

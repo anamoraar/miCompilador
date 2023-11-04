@@ -13,30 +13,24 @@ public class PruebaParser {
         // Nombre de los archivos de entrada y salida
         String inputFileName = args[0];
         String outputFileName = args[1];
-
         // Leer el archivo de entrada
         FileInputStream inputStream = new FileInputStream(inputFileName);
         String inputText = new String(inputStream.readAllBytes());
-
         // Crear el lexer y los tokens a partir de la entrada
         GramaticaLexer lexer = new GramaticaLexer(CharStreams.fromString(inputText));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-
         // Crear el parser
         GramaticaParser parser = new GramaticaParser(tokens);
-
-        // Especificar la regla inicial de la gramática para formar el AST
+        // Crear un FileWriter para escribir la salida
+        FileWriter outputWriter = new FileWriter(outputFileName);
+        // Crear una instancia de MyErrorListener y adjuntarla al parser
+        MyErrorListener errorListener = new MyErrorListener(outputWriter);
+        parser.removeErrorListeners(); // Eliminar los listeners por defecto
+        parser.addErrorListener(errorListener);
+        // Ejecutar la regla inicial de la gramática para formar el AST
         ParseTree AST = parser.programa();
-        //Revisar si hubo errores
-        if (parser.getNumberOfSyntaxErrors() > 0) {
-            FileWriter outputWriter = new FileWriter(outputFileName);
-            outputWriter.write("La entrada contiene errores");
-            outputWriter.close();
-        } else {
-            //El análisis sintáctico fue exitoso
-            FileWriter outputWriter = new FileWriter(outputFileName);
-            outputWriter.write(AST.toStringTree(parser));
-            outputWriter.close();
-        }
+        //Escribir el AST en el archivo de salida
+        outputWriter.write(AST.toStringTree(parser));
+        outputWriter.close(); // Cerrar el archivo de salida
     }
 }

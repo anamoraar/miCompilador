@@ -1,2 +1,3 @@
 x := 45;
-y := verdadero;
+y := !verdadero;
+

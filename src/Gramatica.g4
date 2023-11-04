@@ -51,10 +51,10 @@ argumentos : expresion (',' argumentos)?;
 //Tokens
 NUM : [0-9]+;
 IDENTIFICADOR : [a-z]+;
-SI : 'si';
-CONTRARIO : 'contrario';
-FUNCION : 'funcion';
-RETORNAR : 'retornar';
-VERDADERO : 'verdadero';
-FALSO : 'falso';
+SI : 'SI';
+CONTRARIO : 'CONTRARIO';
+FUNCION : 'FUNCION';
+RETORNAR : 'RETORNAR';
+VERDADERO : 'VERDADERO';
+FALSO : 'FALSO';
 ESPACIOS : [ \t\r\n]+ -> skip; // Ignorar espacios en blanco

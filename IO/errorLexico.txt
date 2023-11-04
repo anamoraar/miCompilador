@@ -1,2 +1,2 @@
 x = 45;
-A := !verdadero;
+A := !VERDADERO;

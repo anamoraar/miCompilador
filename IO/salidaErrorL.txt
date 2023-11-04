@@ -5,6 +5,6 @@ Token: 45, linea: 1, columna: 4
 Token: ;, linea: 1, columna: 6
 Token: :=, linea: 2, columna: 2
 Token: !, linea: 2, columna: 5
-Token: verdadero, linea: 2, columna: 6
+Token: VERDADERO, linea: 2, columna: 6
 Token: ;, linea: 2, columna: 15
 Token: <EOF>, linea: 2, columna: 16

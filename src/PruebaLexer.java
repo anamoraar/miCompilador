@@ -5,12 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
+//Clase para hacer pruebas exclusivamente léxicas
 public class PruebaLexer {
     public static void main(String[] args) throws IOException {
-        if (args.length != 2) {
-            System.err.println("Use el comando asÃ­: PruebaLexer nombreArchivoEntrada nombreArchivoSalida");
-            System.exit(1);
-        }
+        if (args.length != 2) System.exit(1);
         //Nombre de los archivos de entrada y salida
         String inputFileName = args[0];
         String outputFileName = args[1];

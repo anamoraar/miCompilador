@@ -4,12 +4,10 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
+//Clase para hacer pruebas sintácticas (que primero pasan por el lexer)
 public class PruebaParser {
     public static void main(String[] args) throws IOException {
-        if (args.length != 2) {
-            System.err.println("Use el comando así: PruebaParser nombreArchivoEntrada nombreArchivoSalida");
-            System.exit(1);
-        }
+        if (args.length != 2) System.exit(1);
         // Nombre de los archivos de entrada y salida
         String inputFileName = args[0];
         String outputFileName = args[1];

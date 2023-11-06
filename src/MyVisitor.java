@@ -1,20 +1,33 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 
-
+//Clase visitor que pasa por diferentes símbolos de la gramática, solo se sobreescriben
+//los métodos necesarios, ya que los otros están implementados en la clase madre
+//Referencia: https://github.com/bkiers/Mu/blob/master/src/main/java/mu/EvalVisitor.java
 public class MyVisitor extends GramaticaBaseVisitor<Nodo>{
 
     //Almacena las variables
-    private Map<String, Nodo> tablaSimbolos = new HashMap<String, Nodo>();
+    private final Map<String, Nodo> tablaSimbolos = new HashMap<String, Nodo>();
+    private final FileWriter outputWriter;
 
-    public void printTabla(){
+    public MyVisitor(FileWriter outputWriter) {
+        this.outputWriter = outputWriter;
+    }
+
+    public String printTabla(){
+        StringBuilder txt = new StringBuilder();
         for(Map.Entry<String, Nodo> simbs : tablaSimbolos.entrySet()){
             Nodo nodo = simbs.getValue();
             String valor = "";
-            if(nodo.esNumero()) valor += nodo.getNumero();
-            else valor += nodo.getBooleano();
-            System.out.println(simbs.getKey() + " = " + valor);
+            if (nodo != null) {
+                if(nodo.esNumero()) valor += nodo.getNumero()+"\n";
+                else valor += nodo.getBooleano()+"\n";
+                txt.append(simbs.getKey()).append(" = ").append(valor);
+            }
         }
+        return txt.toString();
     }
 
     //Método que visita al nodo no terminal 'asignacion'
@@ -33,7 +46,7 @@ public class MyVisitor extends GramaticaBaseVisitor<Nodo>{
         //Visitar la condición para saber si debe entrar al if
         Nodo valorCondicion = visit(ctx.expresion_bool());
         //Verificar que sea un booleano
-        if (valorCondicion.esBooleano()) {
+        if (valorCondicion != null && valorCondicion.esBooleano()) {
             //El .getBooleano() retorna true o false según la condición
             if (valorCondicion.getBooleano()) {
                 //Visitar la sentencia que se debe hacer en caso de que sea verdadera
@@ -48,6 +61,11 @@ public class MyVisitor extends GramaticaBaseVisitor<Nodo>{
             }
         } else {
             System.err.println("Error semántico: La condición debe ser un booleano.");
+            try{
+                outputWriter.write("Error semántico: La condición debe ser un booleano.\n");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         return null;
     }
@@ -66,6 +84,11 @@ public class MyVisitor extends GramaticaBaseVisitor<Nodo>{
                 return tablaSimbolos.get(identificador);
             } else {
                 System.err.println("Error semántico: Variable '" + identificador + "' no ha sido declarada");
+                try{
+                    outputWriter.write("Error semántico: Variable '" + identificador + "' no ha sido declarada.\n");
+                } catch (IOException ex){
+                    throw new RuntimeException(ex);
+                }
                 return null;
             }
         // Si tiene tres hijos es porque es una operación 
@@ -73,6 +96,7 @@ public class MyVisitor extends GramaticaBaseVisitor<Nodo>{
             Nodo izquierda = visit(ctx.expresion_num(0));
             String operador = ctx.getChild(1).getText();
             Nodo derecha = visit(ctx.expresion_num(1));
+            if(izquierda == null || derecha == null) return null;
             //Realizar la operación
             switch (operador) {
                 case "+" -> {
@@ -112,12 +136,22 @@ public class MyVisitor extends GramaticaBaseVisitor<Nodo>{
                 if (varBooleana.esBooleano()) {
                     return varBooleana;
                 } else {
-                    System.err.println("Error semántico: Variable '" + identificador + "' no es booleana");
+                    System.err.println("Error: Variable '" + identificador + "' no es booleana");
+                    try{
+                        outputWriter.write("Error: Variable '" + identificador + "' no es booleana\n");
+                    } catch (IOException ex){
+                        throw new RuntimeException(ex);
+                    }
                     return null;
                 }
             } else {
                 //La variable no está en la tabla de símbolos
                 System.err.println("Error semántico: Variable '" + identificador + "' no ha sido declarada");
+                try{
+                    outputWriter.write("Error semántico: Variable '" + identificador + "' no ha sido declarada\n");
+                } catch (IOException ex){
+                    throw new RuntimeException(ex);
+                }
                 return null;
             }
         } else if (ctx.getChildCount() == 3) {
@@ -138,8 +172,6 @@ public class MyVisitor extends GramaticaBaseVisitor<Nodo>{
                     return new Nodo(izquierdo.getBooleano() != derecho.getBooleano());
                 }
                 default -> {
-                    //Si no cae en ninguno de los casos anteriores
-                    System.err.println("Error: Operador no válido");
                     return null;
                 }
             }

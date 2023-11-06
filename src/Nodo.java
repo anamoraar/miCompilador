@@ -1,4 +1,5 @@
 //Clase genérica que representa los nodos de diferentes partes de la gramática
+//Referencia: https://github.com/bkiers/Mu/blob/master/src/main/java/mu/Value.java
 public class Nodo {
     //Contenido del nodo
     private final Object valor;

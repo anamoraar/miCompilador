@@ -10,12 +10,15 @@ public class MyVisitor extends GramaticaBaseVisitor<Nodo>{
 
     //Almacena las variables
     private final Map<String, Nodo> tablaSimbolos = new HashMap<String, Nodo>();
+    //Archivo de salida donde se escriben los errores semánticos encontrados
     private final FileWriter outputWriter;
 
+    //El constructor recibe el archivo creado en el Main
     public MyVisitor(FileWriter outputWriter) {
         this.outputWriter = outputWriter;
     }
 
+    //Retorna un String con el contenido de la tabla de símbolos
     public String printTabla(){
         StringBuilder txt = new StringBuilder();
         for(Map.Entry<String, Nodo> simbs : tablaSimbolos.entrySet()){

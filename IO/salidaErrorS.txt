@@ -1,0 +1,2 @@
+Error semántico: Variable 'variable' no ha sido declarada
+Error semántico: La condición debe ser un booleano.

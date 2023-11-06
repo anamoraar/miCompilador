@@ -1,3 +1,3 @@
 x := 45;
 y := !VERDADERO;
-
+z := VERDADERO || FALSO;

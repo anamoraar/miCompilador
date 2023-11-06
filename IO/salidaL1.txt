@@ -7,4 +7,10 @@ Token: :=, linea: 2, columna: 2
 Token: !, linea: 2, columna: 5
 Token: VERDADERO, linea: 2, columna: 6
 Token: ;, linea: 2, columna: 15
+Token: z, linea: 3, columna: 0
+Token: :=, linea: 3, columna: 2
+Token: VERDADERO, linea: 3, columna: 5
+Token: ||, linea: 3, columna: 15
+Token: FALSO, linea: 3, columna: 18
+Token: ;, linea: 3, columna: 23
 Token: <EOF>, linea: 4, columna: 0

@@ -1,1 +1,1 @@
-(programa (sentencia (sentencia (asignacion x := (expresion (expresion_num 45)))) ; (sentencia (asignacion y := (expresion (expresion_bool ! (expresion_bool (bool VERDADERO))))))) ;)
+(programa (sentencia (sentencia (sentencia (asignacion x := (expresion (expresion_num 45)))) ; (sentencia (asignacion y := (expresion (expresion_bool ! (expresion_bool (bool VERDADERO))))))) ; (sentencia (asignacion z := (expresion (expresion_bool (expresion_bool (bool VERDADERO)) (operador_bool ||) (expresion_bool (bool FALSO))))))) ;)

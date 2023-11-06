@@ -1,1 +1,0 @@
-(programa (sentencia (sentencia (asignacion suma := (expresion (expresion_num (expresion_num 5) + (expresion_num 5))))) ; (sentencia (condicional SI ( (expresion_bool (expresion_num suma) (igualdad ==) (expresion_num 10)) ) { (sentencia (asignacion m := (expresion (expresion_num 2)))) }))) ;)
